@@ -18,12 +18,12 @@ const config: Config = {
   url: 'https://eth-peach-lab.github.io/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/merlin-nn-doc/',
+  baseUrl: '/merlin-nn-docs/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'ETH-PEACH-Lab', // Usually your GitHub org/user name.
-  projectName: 'merlin-nn-doc', // Usually your repo name.
+  projectName: 'merlin-nn-docs', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -45,7 +45,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/ETH-PEACH-Lab/merlin-docs/tree/main/',
+            'https://github.com/ETH-PEACH-Lab/merlin-nn-docs/tree/main',
           remarkPlugins: [],
           rehypePlugins: [],
         },
