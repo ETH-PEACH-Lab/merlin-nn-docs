@@ -90,7 +90,7 @@ const config: Config = {
         },
         {
           to: 'https://eth-peach-lab.github.io/merlin-nn-editor/',
-          label: 'Merlin Editor',
+          label: 'Merlin NN Editor',
           position: 'left',
         },
         {
@@ -148,7 +148,7 @@ const config: Config = {
               href: 'https://peachlab.inf.ethz.ch',
             },
             {
-              label: 'Merlin Editor',
+              label: 'Merlin NN Editor',
               href: 'https://eth-peach-lab.github.io/merlin-nn-editor/',
             },
           ],
