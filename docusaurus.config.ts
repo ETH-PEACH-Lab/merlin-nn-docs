@@ -18,7 +18,7 @@ const config: Config = {
   url: 'https://eth-peach-lab.github.io/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/merlin-docs',
+  baseUrl: '/merlin-docs/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -89,12 +89,12 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: 'https://eth-peach-lab.github.io/merlin/',
+          to: 'https://eth-peach-lab.github.io/merlin-nn-editor/',
           label: 'Merlin Editor',
           position: 'left',
         },
         {
-          href: 'https://github.com/ETH-PEACH-Lab/merlin',
+          href: 'https://github.com/ETH-PEACH-Lab/merlin-nn-editor',
           label: 'GitHub',
           position: 'right',
         },
@@ -141,7 +141,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/ETH-PEACH-Lab/merlin',
+              href: 'https://github.com/ETH-PEACH-Lab/merlin-nn-editor',
             },
             {
               label: 'PEACH Lab',
@@ -149,7 +149,7 @@ const config: Config = {
             },
             {
               label: 'Merlin Editor',
-              href: 'https://eth-peach-lab.github.io/merlin/',
+              href: 'https://eth-peach-lab.github.io/merlin-nn-editor/',
             },
           ],
         },
