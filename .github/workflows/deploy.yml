@@ -1,8 +1,9 @@
+
 name: Update Dependencies and Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
@@ -19,7 +20,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       changes-made: ${{ steps.check-changes.outputs.changes-made }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,20 +30,21 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22.13.0"
+          node-version: '18'
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 10.30.1
+          version: 9
+          run_install: false
 
       - name: Get pnpm store directory
         shell: bash
         run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+          echo "STORE_PATH=$(pnpm store path --silent)" >> "$GITHUB_ENV"
 
       - name: Setup pnpm cache
-        uses: actions/cache@v4
+        uses: actions/cache@v3
         with:
           path: ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -55,6 +56,9 @@ jobs:
 
       - name: Update mermaid-merlin package
         run: pnpm up @eth-peach-lab/mermaid-merlin --latest
+
+      - name: Update merlin package
+        run: pnpm up @eth-peach-lab/merlin --latest
 
       - name: Check for changes in lock file
         id: check-changes
@@ -73,7 +77,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add pnpm-lock.yaml
-          git commit -m "chore: update @eth-peach-lab/mermaid-merlin to latest version"
+          git commit -m "chore: update @eth-peach-lab/mermaid-merlin and @eth-peach-lab/merlin to latest version"
           git push
 
   deploy:
@@ -82,31 +86,30 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # If changes were made, we need to pull the latest commit
-          ref: ${{ needs.update-dependencies.outputs.changes-made == 'true' && 'main' || github.sha }}
+          ref: ${{ github.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22.13.0"
+          node-version: '18'
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 10.30.1
+          version: 9
+          run_install: false
 
       - name: Get pnpm store directory
         shell: bash
         run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+          echo "STORE_PATH=$(pnpm store path --silent)" >> "$GITHUB_ENV"
 
       - name: Setup pnpm cache
-        uses: actions/cache@v4
+        uses: actions/cache@v3
         with:
           path: ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -116,8 +119,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build project
-        run: pnpm run build
+      - name: Build website
+        run: pnpm build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -125,7 +128,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./www"
+          path: ./build
 
       - name: Deploy to GitHub Pages
         id: deployment
