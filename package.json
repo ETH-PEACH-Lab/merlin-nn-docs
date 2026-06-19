@@ -1,5 +1,5 @@
 {
-  "name": "merlin-nn-docs",
+  "name": "merlin-docs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -20,7 +20,7 @@
     "@docusaurus/preset-classic": "3.8.1",
     "@docusaurus/theme-common": "^3.8.1",
     "@docusaurus/theme-mermaid": "^3.8.1",
-    "@eth-peach-lab/merlin": "github:ETH-PEACH-Lab/merlin#main",
+    "@eth-peach-lab/merlin": "github:ETH-PEACH-Lab/merlin-nn-editor#main",
     "@eth-peach-lab/mermaid-merlin": "github:ETH-PEACH-Lab/mermaid-merlin#nn-develop",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
