@@ -18,12 +18,12 @@ const config: Config = {
   url: 'https://eth-peach-lab.github.io/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/merlin-docs',
+  baseUrl: '/merlin-nn-docs/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'ETH-PEACH-Lab', // Usually your GitHub org/user name.
-  projectName: 'merlin-docs', // Usually your repo name.
+  projectName: 'merlin-nn-docs', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -45,7 +45,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/ETH-PEACH-Lab/merlin-docs/tree/main/',
+            'https://github.com/ETH-PEACH-Lab/merlin-nn-docs/tree/main',
           remarkPlugins: [],
           rehypePlugins: [],
         },
@@ -89,12 +89,12 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: 'https://eth-peach-lab.github.io/merlin/',
-          label: 'Merlin Editor',
+          to: 'https://eth-peach-lab.github.io/merlin-nn-editor/',
+          label: 'Merlin NN Editor',
           position: 'left',
         },
         {
-          href: 'https://github.com/ETH-PEACH-Lab/merlin',
+          href: 'https://github.com/ETH-PEACH-Lab/merlin-nn-editor',
           label: 'GitHub',
           position: 'right',
         },
@@ -141,15 +141,15 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/ETH-PEACH-Lab/merlin',
+              href: 'https://github.com/ETH-PEACH-Lab/merlin-nn-editor',
             },
             {
               label: 'PEACH Lab',
               href: 'https://peachlab.inf.ethz.ch',
             },
             {
-              label: 'Merlin Editor',
-              href: 'https://eth-peach-lab.github.io/merlin/',
+              label: 'Merlin NN Editor',
+              href: 'https://eth-peach-lab.github.io/merlin-nn-editor/',
             },
           ],
         },
