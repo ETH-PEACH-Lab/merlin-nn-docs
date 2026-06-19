@@ -1,44 +1,47 @@
-import siteConfig from '@generated/docusaurus.config';
-import type * as PrismNamespace from 'prismjs';
-import type {Optional} from 'utility-types';
+import siteConfig from "@generated/docusaurus.config";
+import type * as PrismNamespace from "prismjs";
+import type { Optional } from "utility-types";
 
 // Merlin language definition
 function defineMerlinLanguage(Prism: typeof PrismNamespace) {
   Prism.languages.merlin = {
-    'keyword': {
+    keyword: {
       pattern: /\b(?:page|show|hide|visslides|data|draw)\b/,
-      greedy: true
+      greedy: true,
     },
-    'component': {
+    component: {
       pattern: /\b(?:array|matrix|linkedlist|stack|tree|graph|text)\b/,
-      greedy: true
+      greedy: true,
     },
-    'attribute': {
-      pattern: /\b(?:id|value|color|arrow|nodes|edges|hidden|above|below|left|right|fontSize|fontWeight|fontFamily|align|lineSpacing|width|height|children)\b/,
-      greedy: true
+    attribute: {
+      pattern:
+        /\b(?:id|value|color|arrow|nodes|edges|hidden|above|below|left|right|fontSize|fontWeight|fontFamily|align|lineSpacing|width|height|children)\b/,
+      greedy: true,
     },
-    'positional': {
-      pattern: /\b(?:tl|tr|bl|br|top-left|top-right|bottom-left|bottom-right|top|bottom|left|right|center|centre|\d+x\d+)\b/,
-      greedy: true
+    positional: {
+      pattern:
+        /\b(?:tl|tr|bl|br|top-left|top-right|bottom-left|bottom-right|top|bottom|left|right|center|centre|\d+x\d+)\b/,
+      greedy: true,
     },
-    'dot-command': {
+    "dot-command": {
       pattern: /\b(?:set|add|remove|insert)\w*\b/,
-      greedy: true
+      greedy: true,
     },
-    'variable': {
-      pattern: /\b[a-zA-Z_][a-zA-Z0-9_]*-[a-zA-Z_][a-zA-Z0-9_]*\b|\b[a-zA-Z_][a-zA-Z0-9_]*\b/,
-      greedy: true
+    variable: {
+      pattern:
+        /\b[a-zA-Z_][a-zA-Z0-9_]*-[a-zA-Z_][a-zA-Z0-9_]*\b|\b[a-zA-Z_][a-zA-Z0-9_]*\b/,
+      greedy: true,
     },
-    'number': /\b\d+(?:\.\d+)?\b/,
-    'string': {
+    number: /\b\d+(?:\.\d+)?\b/,
+    string: {
       pattern: /(["'])(?:(?!\1)[^\\\r\n]|\\(?:\r\n|[\s\S]))*\1/,
-      greedy: true
+      greedy: true,
     },
-    'symbol': /[:=*,@&()[\]{}]/,
-    'comment': {
+    symbol: /[:=*,@&()[\]{}]/,
+    comment: {
       pattern: /\/\/.*|\/\*[\s\S]*?\*\//,
-      greedy: true
-    }
+      greedy: true,
+    },
   };
 }
 
@@ -46,9 +49,9 @@ export default function prismIncludeLanguages(
   PrismObject: typeof PrismNamespace,
 ): void {
   const {
-    themeConfig: {prism},
+    themeConfig: { prism },
   } = siteConfig;
-  const {additionalLanguages} = prism as {additionalLanguages: string[]};
+  const { additionalLanguages } = prism as { additionalLanguages: string[] };
 
   // Prism components work on the Prism instance on the window, while prism-
   // react-renderer uses its own Prism instance. We temporarily mount the
@@ -63,12 +66,14 @@ export default function prismIncludeLanguages(
   // Define Merlin language
   defineMerlinLanguage(PrismObject);
 
+  PrismObject.languages["merlin-nn"] = PrismObject.languages.merlin;
+
   additionalLanguages.forEach((lang) => {
-    if (lang === 'php') {
+    if (lang === "php") {
       // eslint-disable-next-line global-require
-      require('prismjs/components/prism-markup-templating.js');
+      require("prismjs/components/prism-markup-templating.js");
     }
-    if (lang === 'merlin') {
+    if (lang === "merlin") {
       // Merlin is already defined above, skip
       return;
     }
@@ -77,8 +82,8 @@ export default function prismIncludeLanguages(
   });
 
   // Clean up and eventually restore former globalThis.Prism object (if any)
-  delete (globalThis as Optional<typeof globalThis, 'Prism'>).Prism;
-  if (typeof PrismBefore !== 'undefined') {
+  delete (globalThis as Optional<typeof globalThis, "Prism">).Prism;
+  if (typeof PrismBefore !== "undefined") {
     globalThis.Prism = PrismBefore;
   }
 }

@@ -68,13 +68,13 @@ These properties can be used directly inside an architecture.
 
 A block is a reusable part of an architecture. It can contain nodes, edges, and groups. Blocks are declared inside an architecture.
 
-```merlin
+```merlin-nn
 block BlockName: [
     layout: vertical,
     gap: 40,
 
     nodes: [
-        node0 = type: rect
+        node0 = type: rect,
         node1 = type: rect
     ],
 
@@ -123,15 +123,15 @@ Nodes are visual items inside a block. They are declared inside a nodes: [...] s
 
 A node has the following form:
 
-```merlin
+```merlin-nn
 nodeId = property: value property: value
 ```
 
 Example:
 
-```merlin
+```merlin-nn
 nodes: [
-    input = type: rect label.text: "Input"
+    input = type: rect label.text: "Input",
     conv = type: stacked shape: 8x64x64 color: "blue"
 ]
 ```
@@ -330,15 +330,15 @@ Edges connect nodes, groups, or edge anchors inside a block.
 
 An edge follows this pattern:
 
-```merlin
+```merlin-nn
 edgeId = source.anchor -> target.anchor property: value
 ```
 
 Example:
 
-```merlin
+```merlin-nn
 edges: [
-    e0 = a.right -> b.left
+    e0 = a.right -> b.left,
     e1 = e0.mid -> c.top
 ]
 ```
@@ -423,10 +423,10 @@ show IndexedPortsExample`}
 
 Groups collect nodes and other groups into a visual or logical unit. Groups can include nodes and previously defined groups.
 
-```merlin
+```merlin-nn
 groups: [
-    row0 = members: [input, conv] layout: horizontal
-    row1 = members: [c, d] layout: horizontal
+    row0 = members: [input, conv] layout: horizontal,
+    row1 = members: [c, d] layout: horizontal,
     allRows = members: [row0, row1] layout: vertical
 ]
 ```
@@ -515,11 +515,11 @@ Use it to:
 - arrange blocks horizontally, vertically, or in a grid
 - connect nodes or groups across different blocks
 
-```merlin
+```merlin-nn
 diagram: [
-    layout: horizontal
-    gap: 60
-    uses: [e = Encoder, d = Decoder]
+    layout: horizontal,
+    gap: 60,
+    uses: [e = Encoder, d = Decoder],
     connects: [
         e.output.right -> d.input.left shape: bow style: dashed color: "gray" arrowheads: 1
     ]
@@ -549,7 +549,7 @@ diagram: [
 
 The uses section defines which blocks appear in the final diagram.
 
-```merlin
+```merlin-nn
 uses: [e = Encoder, d = Decoder]
 ```
 
@@ -557,7 +557,7 @@ Here, e and d are aliases. These aliases can then be used in connects.
 
 The same block can be used multiple times by assigning it to different aliases:
 
-```merlin
+```merlin-nn
 uses: [e = Encoder, e2 = Encoder]
 ```
 
@@ -571,7 +571,7 @@ The connects section creates connections between aliased blocks.
 
 A diagram connection uses the form:
 
-```merlin
+```merlin-nn
 alias.member.anchor -> alias.member.anchor
 ```
 
